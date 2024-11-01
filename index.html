@@ -237,21 +237,47 @@
 
 
     <!-- Customer Form Section -->
-    <section id="contact" class="form-container">
-        <h2>Contact Form</h2> <!-- Adding the title for Contact Form -->
-        <form action="submit_form.php" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required style="width: 90%; margin: 0 auto; display: block;">
+<section id="contact" class="form-container">
+    <h2>Contact Form</h2>
+    <form id="contactForm" onsubmit="submitForm(event)">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required style="width: 90%; margin: 0 auto; display: block;">
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required style="width: 90%; margin: 0 auto; display: block;">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required style="width: 90%; margin: 0 auto; display: block;">
 
-            <label for="ig">Instagram Account</label>
-            <input type="text" id="ig" name="ig" style="width: 90%; margin: 0 auto; display: block;">
+        <label for="ig">Instagram Account</label>
+        <input type="text" id="ig" name="ig" style="width: 90%; margin: 0 auto; display: block;">
 
-            <input type="submit" value="Submit" style="width: 90%; margin: 20px auto; display: block;">
-        </form>
-    </section>
+        <input type="submit" value="Submit" style="width: 90%; margin: 20px auto; display: block;">
+    </form>
+    <p id="responseMessage" style="text-align: center; color: #d4af37;"></p> <!-- Добавлен текст для сообщения -->
+</section>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIG5IiRaNwFAQeWQz2i8gMkmSZ2gLli5geehAKrt2sTUmdrJsCOvqryhg3e6KVxecq/exec'; // Вставьте сюда URL скрипта
+
+    async function submitForm(event) {
+        event.preventDefault();
+        const form = document.getElementById('contactForm');
+        const responseMessage = document.getElementById('responseMessage');
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(scriptURL, { method: 'POST', body: formData });
+            if (response.ok) {
+                responseMessage.textContent = 'Submission successful!';
+                form.reset();
+            } else {
+                responseMessage.textContent = 'Error submitting form. Please try again.';
+            }
+        } catch (error) {
+            responseMessage.textContent = 'Error submitting form. Please try again.';
+            console.error('Error:', error);
+        }
+    }
+</script>
+
 
 
     <footer>
