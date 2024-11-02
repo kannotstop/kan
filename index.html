@@ -244,17 +244,20 @@
         <input type="text" id="name" name="name" required style="width: 90%; margin: 0 auto; display: block;">
 
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required style="width: 90%; margin: 0 auto; display: block;">
+        <input type="tel" id="phone" name="phone" required pattern="[0-9()+ -]*" 
+               title="Please enter a valid phone number using digits, +, -, ( and )." 
+               style="width: 90%; margin: 0 auto; display: block;">
 
         <label for="ig">Instagram Account</label>
         <input type="text" id="ig" name="ig" style="width: 90%; margin: 0 auto; display: block;">
 
         <input type="submit" value="Submit" style="width: 90%; margin: 20px auto; display: block;">
     </form>
-    <p id="responseMessage" style="text-align: center; color: #d4af37;"></p> <!-- Message text added -->
+    <p id="responseMessage" style="text-align: center; color: #d4af37;"></p>
 </section>
 
-<script src="form-submit.js"></script> <!-- Link to the JavaScript file -->
+<script src="form-submit.js"></script>
+
 
 
 
