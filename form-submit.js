@@ -12,13 +12,17 @@ async function submitForm(event) {
     phone = phone.replace(/\D/g, ''); // Удалить все нецифровые символы
 
     // Проверка на наличие номера, который начинается на 7 или 8
-    if (phone.startsWith('8')) {
-        phone = phone.replace(/^8/, '7'); // Заменить 8 на 7
-    }
-
-    // Преобразование номера в формат 87777777777
-    if (!phone.startsWith('7')) {
-        phone = '7' + phone; // Добавить 7 в начале, если номер не начинается с 7
+    if (phone.length === 11) {
+        // Если номер начинается с 7, заменяем на 8
+        if (phone.startsWith('7')) {
+            phone = phone.replace(/^7/, '8'); // Заменить 7 на 8
+        }
+    } else if (phone.length < 11) {
+        // Если номер короче 11 символов, добавляем 8 в начале
+        phone = '8' + phone; // Добавить 8 в начале
+    } else {
+        responseMessage.textContent = 'Invalid phone number format. Please check your input.';
+        return;
     }
 
     // Убедимся, что номер содержит 11 цифр
