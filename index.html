@@ -236,7 +236,7 @@
     </section>
 
 
-    <!-- Customer Form Section -->
+<!-- Customer Form Section -->
 <section id="contact" class="form-container">
     <h2>Contact Form</h2>
     <form id="contactForm" onsubmit="submitForm(event)">
@@ -251,32 +251,10 @@
 
         <input type="submit" value="Submit" style="width: 90%; margin: 20px auto; display: block;">
     </form>
-    <p id="responseMessage" style="text-align: center; color: #d4af37;"></p> <!-- Добавлен текст для сообщения -->
+    <p id="responseMessage" style="text-align: center; color: #d4af37;"></p> <!-- Message text added -->
 </section>
 
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby5x6yHNguyjurtiVZKlhIhdILjsxExm930j8qOdoJ3xeQ7CP18wRJT6UqyDDkH_epP/exec'; // Вставьте сюда URL скрипта
-
-    async function submitForm(event) {
-        event.preventDefault();
-        const form = document.getElementById('contactForm');
-        const responseMessage = document.getElementById('responseMessage');
-
-        try {
-            const formData = new FormData(form);
-            const response = await fetch(scriptURL, { method: 'POST', body: formData });
-            if (response.ok) {
-                responseMessage.textContent = 'Submission successful!';
-                form.reset();
-            } else {
-                responseMessage.textContent = 'Error submitting form. Please try again.';
-            }
-        } catch (error) {
-            responseMessage.textContent = 'Error submitting form. Please try again.';
-            console.error('Error:', error);
-        }
-    }
-</script>
+<script src="form-submit.js"></script> <!-- Link to the JavaScript file -->
 
 
 
