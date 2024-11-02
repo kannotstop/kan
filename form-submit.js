@@ -33,9 +33,13 @@ function formatPhoneNumber(inputNumber) {
     // Удаляем все символы, кроме цифр
     let cleanedNumber = inputNumber.replace(/[^\d]/g, '');
 
-    // Если номер начинается не с 8, добавляем 8 в начале
-    if (cleanedNumber.length === 10) {
-        cleanedNumber = '8' + cleanedNumber;
+    // Проверка на начало номера
+    if (cleanedNumber.startsWith('7') && cleanedNumber.length === 10) {
+        cleanedNumber = '8' + cleanedNumber; // Если номер начинается с '7' и состоит из 10 цифр, добавляем 8
+    } else if (cleanedNumber.startsWith('7') && cleanedNumber.length === 11) {
+        cleanedNumber = '8' + cleanedNumber.slice(1); // Если номер начинается с '7' и состоит из 11 цифр, заменяем первую '7' на '8'
+    } else if (cleanedNumber.length === 10) {
+        cleanedNumber = '8' + cleanedNumber; // Если номер состоит из 10 цифр, добавляем '8' в начале
     }
 
     return cleanedNumber; // Возвращаем номер в нужном формате
